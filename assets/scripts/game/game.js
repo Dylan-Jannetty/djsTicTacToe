@@ -1,11 +1,15 @@
 'use strict'
+
+const ui = require('./gameUI')
+const api = require('./gameAPI')
+
 // your JS code goes here
 // declare an empty gameBoard
 const playerOne = 'X'
 const playerTwo = 'O'
 let currentPlayer = 'X'
 
-const gameBoard =
+let gameBoard =
 ['', '', '',
   '', '', '',
   '', '', '']
@@ -103,9 +107,23 @@ const checkForWinner = () => {
     $('#message').css('background-color', 'orange')
     return true
   } else {
-    // return draw
+    // check draw
     checkDraw()
   }
+}
+// clear board function
+const clearBoard = () => {
+  gameBoard = ['', '', '', '', '', '', '', '', '']
+  $('.box').empty('data-cell')
+}
+// new game function
+const onNewGame = function (event) {
+  event.preventDefault()
+  api.newGame()
+    .then(ui.startNewGame)
+    .catch(ui.newGameError)
+  clearBoard()
+  currentPlayer = 'X'
 }
 
 const addHandlers = function () {
@@ -127,8 +145,13 @@ const addHandlers = function () {
       $('#message').text('That spot is taken')
       $('#message').css('background-color', 'red')
     }
+    // const obj = {game: {cell: {index: num, value: ''}, over: false}}
+    // api.updateGame()
+    //   .then(console.log('click update success'))
+    //   .catch(console.log('click update failure'))
   })
   $('.game-board').on('click', checkForWinner)
+  $('#new-game').on('click', onNewGame)
 }
 
 module.exports = {
@@ -139,5 +162,7 @@ module.exports = {
   checkForWinner,
   playerOne,
   playerTwo,
-  checkDraw
+  checkDraw,
+  onNewGame,
+  clearBoard
 }
