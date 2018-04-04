@@ -1,28 +1,28 @@
 'use strict'
 // your JS code goes here
 // declare an empty gameBoard
-const addHandlers = function () {
-  $('.box').on('click', function () {
-    console.log('Box clicked')
-  })
-}
-
 const playerOne = 'X'
 const playerTwo = 'O'
+let currentPlayer = 'X'
 
 const gameBoard =
 ['', '', '',
   '', '', '',
   '', '', '']
 
+const alertCurrentPlayer = () => {
+  $('#message').text('Player ' + currentPlayer + ' it is your turn')
+}
+
+alertCurrentPlayer()
+
 console.log(gameBoard)
 // write a function that accepts a x or o and a position to add to board
-const addToBoard = function (player, position) {
-  gameBoard[position] = player
+const addToBoard = function (event) {
+  const position = $(event.target).attr('data-cell') // get id of box you clicked on
+  gameBoard[position] = currentPlayer
+  console.log(gameBoard)
 }
-addToBoard('x', 0)
-addToBoard('x', 2)
-addToBoard('x', 1)
 
 console.log(gameBoard)
 // write a function that only adds to the board if the spot is free
@@ -35,22 +35,32 @@ const spotTaken = () => {
     }
   }
 }
-spotTaken()
 // Write a function that will switch players
 // If the current player is "x", then change the current player to "o".
 // Otherwise, change the current player to "x".
-let currentPlayer = 'X'
+
 const switchTurns = () => {
   if (currentPlayer === 'X') {
     currentPlayer = 'O'
-    console.log("it's player ones turn")
   } else if (currentPlayer === 'O') {
     currentPlayer = 'X'
-    console.log("it's player twos turn")
+  }
+  alertCurrentPlayer()
+}
+// check for draw
+const isEmpty = function (element) {
+  return element === ('')
+}
+
+const checkDraw = function () {
+  const result = gameBoard.some(isEmpty)
+  console.log(result)
+  if (result === false) {
+    $('#message').text('Game is a draw')
+    $('#message').css('background-color', 'green')
   }
 }
 // check for winner
-
 const checkForWinner = () => {
   // if X wins top row
   if ((gameBoard[0] === 'X' && gameBoard[1] === 'X' && gameBoard[2] === 'X') ||
@@ -69,7 +79,9 @@ const checkForWinner = () => {
       // or X wins right to left diagonal
       (gameBoard[2] === 'X' && gameBoard[4] === 'X' && gameBoard[6] === 'X')) {
     // print player one wins
-    console.log('player one has won')
+    $('#message').text('Player one has won')
+    $('#message').css('background-color', 'orange')
+    return true
     // if O wins top row
   } else if ((gameBoard[0] === 'O' && gameBoard[1] === 'O' && gameBoard[2] === 'O') ||
       // or O wins middle row
@@ -87,14 +99,37 @@ const checkForWinner = () => {
       // or O wins right to left diagonal
       (gameBoard[2] === 'O' && gameBoard[4] === 'O' && gameBoard[6] === 'O')) {
     // print player two wins
-    console.log('player two has won')
+    $('#message').text('Player two has won')
+    $('#message').css('background-color', 'orange')
+    return true
   } else {
-    // No one has won yet
-    console.log('no one has won yet')
+    // return draw
+    checkDraw()
   }
 }
 
-checkForWinner()
+const addHandlers = function () {
+  $('.box').on('click', function () {
+    // if game is over
+    if (checkForWinner() === true) {
+      // do nothing
+      return false
+      // or if spot is empty
+    } else if ($(this).text().length === 0) {
+      // play the game
+
+      $(this).text(currentPlayer)
+      addToBoard(event)
+      switchTurns()
+      // else spot is taken, show message to user
+    } else {
+      // show message to user that spot is taken
+      $('#message').text('That spot is taken')
+      $('#message').css('background-color', 'red')
+    }
+  })
+  $('.game-board').on('click', checkForWinner)
+}
 
 module.exports = {
   addHandlers,
@@ -103,5 +138,6 @@ module.exports = {
   switchTurns,
   checkForWinner,
   playerOne,
-  playerTwo
+  playerTwo,
+  checkDraw
 }

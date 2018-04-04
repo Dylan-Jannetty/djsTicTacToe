@@ -14,7 +14,6 @@ const signUpFailure = function () {
 const signInSuccess = function (data) {
   $('#message').text('Sign In Success')
   $('#message').css('background-color', 'blue')
-  console.log(data)
   store.user = data.user
 }
 
@@ -41,6 +40,7 @@ const signOutFailure = function () {
   $('#message').text('Sign Out Failure')
   $('#message').css('background-color', 'red')
 }
+
 module.exports = {
   signUpSuccess,
   signUpFailure,
