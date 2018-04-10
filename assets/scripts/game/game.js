@@ -21,15 +21,12 @@ const alertCurrentPlayer = () => {
 
 alertCurrentPlayer()
 
-console.log(gameBoard)
 // write a function that accepts a x or o and a position to add to board
 const addToBoard = function (event) {
   const position = $(event.target).attr('data-cell') // get id of box you clicked on
   gameBoard[position] = currentPlayer
-  console.log(gameBoard)
 }
 
-console.log(gameBoard)
 // write a function that only adds to the board if the spot is free
 const spotTaken = () => {
   for (let i = 0; i < gameBoard.length; i++) {
