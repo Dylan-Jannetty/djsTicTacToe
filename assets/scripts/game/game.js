@@ -15,7 +15,7 @@ let gameBoard =
   '', '', '']
 
 const alertCurrentPlayer = () => {
-  $('#message').text('Player ' + currentPlayer + ' it is your turn')
+  $('.playerMessage').text('Player ' + currentPlayer + ' it is your turn')
 }
 
 alertCurrentPlayer()

@@ -26,8 +26,6 @@ const signInSuccess = function (data) {
   $('#sign-out').removeClass('hidden')
   // show new game button
   $('#new-game').removeClass('hidden')
-  // show board
-  $('.game-board').removeClass('hidden')
 }
 
 const signInFailure = function () {

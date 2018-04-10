@@ -7,6 +7,9 @@ const startNewGame = function (data) {
   $('#message').css('background-color', 'orange')
   console.log(data.game)
   store.game = data.game
+  // show board
+  $('.game-board').removeClass('hidden')
+  $('.playerMessage').removeClass('hidden')
 }
 const newGameError = (data) => {
   $('#message').text('Error while starting new game')
