@@ -58,7 +58,6 @@ const isEmpty = function (element) {
 
 const checkDraw = function () {
   const result = gameBoard.some(isEmpty)
-  console.log(result)
   if (result === false) {
     $('#message').text('Game is a draw')
     $('#message').css('background-color', 'green')
@@ -127,15 +126,18 @@ const onNewGame = function (event) {
 }
 
 const addHandlers = function () {
-  $('.box').on('click', function () {
+  $('.box').on('click', function (event) {
+    const position = $(event.target).data('cell')
+    let obj
     // if game is over
     if (checkForWinner() === true) {
+      obj = {game: {cell: {index: position, value: currentPlayer}, over: true}}
       // do nothing
       return false
       // or if spot is empty
     } else if ($(this).text().length === 0) {
       // play the game
-
+      obj = {game: {cell: {index: position, value: currentPlayer}, over: false}}
       $(this).text(currentPlayer)
       addToBoard(event)
       switchTurns()
@@ -145,10 +147,10 @@ const addHandlers = function () {
       $('#message').text('That spot is taken')
       $('#message').css('background-color', 'red')
     }
-    // const obj = {game: {cell: {index: num, value: ''}, over: false}}
-    // api.updateGame()
-    //   .then(console.log('click update success'))
-    //   .catch(console.log('click update failure'))
+
+    api.updateGame(obj)
+      .then((data) => { console.log('click update success', data) })
+      .catch(() => { console.log('click update failure') })
   })
   $('.game-board').on('click', checkForWinner)
   $('#new-game').on('click', onNewGame)

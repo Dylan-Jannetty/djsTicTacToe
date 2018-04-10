@@ -17,7 +17,7 @@
 
       <!-- // Game Board -->
 
-      <div class="game-board">
+      <div class="game-board hidden">
         <div class="box" data-cell="0"></div>
         <div class="box" data-cell="1"></div>
         <div class="box" data-cell="2"></div>
@@ -30,6 +30,7 @@
       </div>
 
 <!-- // form to sign up -->
+<div class="auth">
       <form id="sign-up" class="border">
   <fieldset>
     <legend>sign-up</legend>
@@ -51,7 +52,7 @@
 </form>
 
 <!-- // form to change password -->
-<form id="change-password" class="border">
+<form id="change-password" class="border hidden">
   <fieldset>
     <legend>Change Password</legend>
     <input type="password" name="passwords[old]" placeholder="Old Password">
@@ -61,15 +62,15 @@
 </form>
 
 <!-- // form to sign out -->
-<form id="sign-out" class="border">
+<form id="sign-out" class="border hidden">
 <fieldset>
   <legend>Sign out</legend>
   <input type="submit" value="sign out!">
 </fieldset>
 </form>
+</div>
 
-
-  <div id="new-game" class="border"><input type="submit" value="New Game"></div>
+  <div id="new-game" class="border hidden"><input type="submit" value="New Game"></div>
 
 
 

@@ -4,7 +4,7 @@ const store = require('../store')
 
 const newGame = (data) => {
   return $.ajax({
-    url: config.apiUrl + `/games/`,
+    url: config.apiUrl + '/games/',
     method: 'POST',
     headers: {
       contentType: 'application/json',
@@ -16,7 +16,7 @@ const newGame = (data) => {
 
 const updateGame = (data) => {
   return $.ajax({
-    url: config.apiUrl + `/games/` + store.game.id,
+    url: config.apiUrl + '/games/' + store.game.id,
     method: 'PATCH',
     headers: {
       contentType: 'application/json',
