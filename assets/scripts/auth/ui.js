@@ -6,6 +6,7 @@ const signUpSuccess = function () {
   $('#message').css('background-color', 'green')
   $('#message').css('text-align', 'center')
   $('#sign-up').addClass('hidden')
+  $('#sign-up').trigger('reset')
 }
 
 const signUpFailure = function () {
@@ -29,6 +30,7 @@ const signInSuccess = function (data) {
   $('#sign-out').removeClass('hidden')
   // show new game button
   $('#new-game').removeClass('hidden')
+  $('#sign-in').trigger('reset')
 }
 
 const signInFailure = function () {
@@ -41,7 +43,7 @@ const changePasswordSuccess = function () {
   $('#message').text('Successfully changed password')
   $('#message').css('background-color', 'green')
   $('#message').css('text-align', 'center')
-  $('#change-password').addClass('hidden')
+  $('#change-password').trigger('reset')
 }
 
 const changePasswordFailure = function () {
@@ -66,6 +68,8 @@ const signOutSuccess = function () {
   $('.game-board').addClass('hidden')
   // hide players turn message when signed out
   $('.playerMessage').addClass('hidden')
+  // hide new game button when signed out
+  $('#new-game').addClass('hidden')
 }
 const signOutFailure = function () {
   $('#message').text('Sign Out Failure')
