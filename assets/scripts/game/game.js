@@ -16,6 +16,7 @@ let gameBoard =
 
 const alertCurrentPlayer = () => {
   $('.playerMessage').text('Player ' + currentPlayer + ' it is your turn')
+  $('.playerMessage').css('text-align', 'center')
 }
 
 alertCurrentPlayer()

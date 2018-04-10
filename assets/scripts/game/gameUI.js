@@ -5,6 +5,7 @@ const store = require('../store')
 const startNewGame = function (data) {
   $('#message').text('New Game Started')
   $('#message').css('background-color', 'orange')
+  $('#message').css('text-align', 'center')
   console.log(data.game)
   store.game = data.game
   // show board
