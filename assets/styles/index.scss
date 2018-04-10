@@ -1,8 +1,12 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
+@import url('https://fonts.googleapis.com/css?family=Black+Han+Sans');
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower');
 
 h1 {
   text-align: center;
+  color: #c14431;
+  font-family: 'Black Han Sans', sans-serif;
 }
 
 .game-board {
@@ -33,8 +37,24 @@ h1 {
 
 .auth {
   margin: 100px;
+  font-family: 'Indie Flower', cursive;
+  font-weight: bold;
+}
+
+#sign-in {
+  margin-top: 80px;
+}
+
+#sign-out {
+  margin-top: 80px;
 }
 
 #new-game {
-  margin-top: 100px;
+  margin-top: 200px;
+  margin-bottom: 200px;
+  color: red;
+}
+
+body {
+  background-color: #1a9ea5;
 }

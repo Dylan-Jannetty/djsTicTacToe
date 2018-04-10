@@ -84,7 +84,7 @@ const checkForWinner = () => {
       (gameBoard[2] === 'X' && gameBoard[4] === 'X' && gameBoard[6] === 'X')) {
     // print player one wins
     $('#message').text('Player one has won')
-    $('#message').css('background-color', 'orange')
+    $('#message').css('background-color', 'yellow')
     return true
     // if O wins top row
   } else if ((gameBoard[0] === 'O' && gameBoard[1] === 'O' && gameBoard[2] === 'O') ||
@@ -104,7 +104,7 @@ const checkForWinner = () => {
       (gameBoard[2] === 'O' && gameBoard[4] === 'O' && gameBoard[6] === 'O')) {
     // print player two wins
     $('#message').text('Player two has won')
-    $('#message').css('background-color', 'orange')
+    $('#message').css('background-color', 'yellow')
     return true
   } else {
     // check draw
