@@ -123,7 +123,9 @@ const onNewGame = function (event) {
     .then(ui.startNewGame)
     .catch(ui.newGameError)
   clearBoard()
-  currentPlayer = 'X'
+  if (currentPlayer === 'O') {
+    return switchTurns()
+  }
 }
 
 const addHandlers = function () {

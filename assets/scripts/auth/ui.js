@@ -64,6 +64,8 @@ const signOutSuccess = function () {
   $('#sign-out').addClass('hidden')
   // hide game board
   $('.game-board').addClass('hidden')
+  // hide players turn message when signed out
+  $('.playerMessage').addClass('hidden')
 }
 const signOutFailure = function () {
   $('#message').text('Sign Out Failure')
