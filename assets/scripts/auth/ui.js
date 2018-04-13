@@ -6,6 +6,7 @@ const signUpSuccess = function () {
   $('#message').css('background-color', 'green')
   $('#message').css('text-align', 'center')
   $('#sign-up').addClass('hidden')
+  $('#get-game').removeClass('hidden')
   $('#sign-up').trigger('reset')
 }
 
@@ -31,6 +32,7 @@ const signInSuccess = function (data) {
   // show new game button
   $('#new-game').removeClass('hidden')
   $('#sign-in').trigger('reset')
+  $('#get-game').removeClass('hidden')
 }
 
 const signInFailure = function () {

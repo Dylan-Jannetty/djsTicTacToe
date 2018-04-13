@@ -6,7 +6,6 @@ const startNewGame = function (data) {
   $('#message').text('New Game Started')
   $('#message').css('background-color', 'orange')
   $('#message').css('text-align', 'center')
-  console.log(data.game)
   store.game = data.game
   // show board
   $('.game-board').removeClass('hidden')
@@ -15,19 +14,26 @@ const startNewGame = function (data) {
 const newGameError = (data) => {
   $('#message').text('Error while starting new game')
   $('#message').css('background-color', 'red')
-  console.log(data)
 }
 const onUpdateGameSuccess = (data) => {
-  console.log(data)
   store.game.id = data.game.id
 }
 const onUpdateGameFailure = (data) => {
-  $('#message').text('update game failure')
+  console.log('Something went wrong while updating game')
+}
+const gameDataSuccess = (data) => {
+  $('#message').text('games played: ' + data.games.length)
+  $('#message').css('background-color', 'Green')
+}
+const gameDataError = (data) => {
+  $('#message').text('There was an issue getting games')
   $('#message').css('background-color', 'red')
 }
 module.exports = {
   startNewGame,
   newGameError,
   onUpdateGameSuccess,
-  onUpdateGameFailure
+  onUpdateGameFailure,
+  gameDataSuccess,
+  gameDataError
 }
