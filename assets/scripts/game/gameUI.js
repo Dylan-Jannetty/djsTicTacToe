@@ -19,12 +19,21 @@ const onUpdateGameSuccess = (data) => {
   store.game.id = data.game.id
 }
 const onUpdateGameFailure = (data) => {
-  $('#message').text('update game failure')
+  console.log('Something went wrong while updating game')
+}
+const gameDataSuccess = (data) => {
+  $('#message').text('games played: ' + data.games.length)
+  $('#message').css('background-color', 'Green')
+}
+const gameDataError = (data) => {
+  $('#message').text('There was an issue getting games')
   $('#message').css('background-color', 'red')
 }
 module.exports = {
   startNewGame,
   newGameError,
   onUpdateGameSuccess,
-  onUpdateGameFailure
+  onUpdateGameFailure,
+  gameDataSuccess,
+  gameDataError
 }

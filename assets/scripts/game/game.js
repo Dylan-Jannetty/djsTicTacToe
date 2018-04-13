@@ -2,7 +2,6 @@
 
 const ui = require('./gameUI')
 const api = require('./gameAPI')
-
 // your JS code goes here
 // declare an empty gameBoard
 const playerOne = 'X'
@@ -125,6 +124,13 @@ const onNewGame = function (event) {
   }
 }
 
+const onGetGameData = function (event) {
+  event.preventDefault()
+  api.getGameData()
+    .then(ui.gameDataSuccess)
+    .catch(ui.gameDataError)
+}
+
 const addHandlers = function () {
   $('.box').on('click', function (event) {
     const position = $(event.target).data('cell')
@@ -149,11 +155,12 @@ const addHandlers = function () {
     }
 
     api.updateGame(obj)
-      .then((data) => { console.log('click update success', data) })
-      .catch(() => { console.log('click update failure') })
+      .then(ui.onUpdateGameSuccess)
+      .catch(ui.onUpdateGameFailure)
   })
   $('.game-board').on('click', checkForWinner)
   $('#new-game').on('click', onNewGame)
+  $('#get-game').on('click', onGetGameData)
 }
 
 module.exports = {
@@ -166,5 +173,6 @@ module.exports = {
   playerTwo,
   checkDraw,
   onNewGame,
-  clearBoard
+  clearBoard,
+  onGetGameData
 }
