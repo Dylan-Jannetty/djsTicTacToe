@@ -30,9 +30,7 @@ const addToBoard = function (event) {
 const spotTaken = () => {
   for (let i = 0; i < gameBoard.length; i++) {
     if (spotTaken === false && gameBoard[i] === ' ') {
-      console.log('spot is open!')
-    } else {
-      console.log('spot is closed')
+
     }
   }
 }
