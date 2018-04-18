@@ -19,7 +19,7 @@ const onUpdateGameSuccess = (data) => {
   store.game.id = data.game.id
 }
 const onUpdateGameFailure = (data) => {
-  console.log('Something went wrong while updating game')
+  $('#message').text('Something went wrong while updating game')
 }
 const gameDataSuccess = (data) => {
   $('#message').text('games played: ' + data.games.length)
