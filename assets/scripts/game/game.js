@@ -56,6 +56,7 @@ const checkDraw = function () {
   if (result === false) {
     $('#message').text('Game is a draw')
     $('#message').css('background-color', 'green')
+    $('.playerMessage').addClass('hidden')
   }
 }
 // check for winner
@@ -79,6 +80,7 @@ const checkForWinner = () => {
     // print player one wins
     $('#message').text('Player one has won')
     $('#message').css('background-color', 'yellow')
+    $('.playerMessage').addClass('hidden')
     return true
     // if O wins top row
   } else if ((gameBoard[0] === 'O' && gameBoard[1] === 'O' && gameBoard[2] === 'O') ||
@@ -99,6 +101,7 @@ const checkForWinner = () => {
     // print player two wins
     $('#message').text('Player two has won')
     $('#message').css('background-color', 'yellow')
+    $('.playerMessage').addClass('hidden')
     return true
   } else {
     // check draw
